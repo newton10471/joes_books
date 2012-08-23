@@ -1,4 +1,7 @@
 JoesBooks::Application.routes.draw do
+  devise_for :users
+
+  resources :votes
   resources :books
 
   # The priority is based upon order of creation:
