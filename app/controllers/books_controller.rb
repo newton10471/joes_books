@@ -4,10 +4,12 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    @books = Book.all
+    # p "current_user.id is #{current_user.id}"
+    @books = Book.find_all_by_user_id(current_user.id)
+    # @books = Book.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @books }
     end
   end
@@ -76,6 +78,12 @@ class BooksController < ApplicationController
   # DELETE /books/1.json
   def destroy
     @book = Book.find(params[:id])
+    # if @book.user_id == current_user.id
+    #   @book.destroy
+    # else
+    #   flash.now[:error] = 'You don\'t have access to delete that item!'
+    #   render 'index'
+    # end
     @book.destroy
 
     respond_to do |format|

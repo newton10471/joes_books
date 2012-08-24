@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_accessible :first_name, :last_name
 
+  validates :first_name, :last_name, :email, :password, :password_confirmation, :presence => true
+
   has_many :books
   has_many :votes
 end
