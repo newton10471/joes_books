@@ -27,6 +27,7 @@ class VotesController < ApplicationController
   # GET /votes/new.json
   def new
     @vote = Vote.new
+    @vote.user_id = current_user.id
 
     respond_to do |format|
       format.html # new.html.erb

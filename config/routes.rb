@@ -1,8 +1,13 @@
 JoesBooks::Application.routes.draw do
-  devise_for :users
+  
+  devise_for :users, :path => 'accounts'
 
-  resources :votes
-  resources :books
+  resources :users do
+    resources :books
+    resources :votes
+  end
+
+  # resources :books
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -4,9 +4,7 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    # p "current_user.id is #{current_user.id}"
-    @books = Book.find_all_by_user_id(current_user.id)
-    # @books = Book.all
+    @books = Book.find_all_by_user_id(current_user)
 
     respond_to do |format|
       format.html
@@ -49,7 +47,7 @@ class BooksController < ApplicationController
 
     respond_to do |format|
       if @book.save
-        format.html { redirect_to @book, notice: 'Book was successfully created.' }
+        format.html { redirect_to [current_user, @book], notice: 'Book was successfully created.' }
         format.json { render json: @book, status: :created, location: @book }
       else
         format.html { render action: "new" }
@@ -65,7 +63,7 @@ class BooksController < ApplicationController
 
     respond_to do |format|
       if @book.update_attributes(params[:book])
-        format.html { redirect_to @book, notice: 'Book was successfully updated.' }
+        format.html { redirect_to [current_user, @book], notice: 'Book was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -78,16 +76,10 @@ class BooksController < ApplicationController
   # DELETE /books/1.json
   def destroy
     @book = Book.find(params[:id])
-    # if @book.user_id == current_user.id
-    #   @book.destroy
-    # else
-    #   flash.now[:error] = 'You don\'t have access to delete that item!'
-    #   render 'index'
-    # end
     @book.destroy
 
     respond_to do |format|
-      format.html { redirect_to books_url }
+      format.html { redirect_to user_books_url }
       format.json { head :no_content }
     end
   end

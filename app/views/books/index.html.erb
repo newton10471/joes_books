@@ -16,13 +16,13 @@
     <td><%= book.author %></td>
 <!--    <td><%= link_to raw(book.amazon_link) %></td> -->
     <td><%= link_to  'Book Link on Amazon', raw(get_amazon_link(book.title, book.author)) %>
-    <td><%= link_to 'Show', book %></td>
-    <td><%= link_to 'Edit', edit_book_path(book) %></td>
-    <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', user_book_path(current_user, book) %></td>
+    <td><%= link_to 'Edit', edit_user_book_path(current_user, book) %></td>
+    <td><%= link_to 'Destroy', [current_user, book], method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Book', new_book_path %>
+<%= link_to 'New Book', new_user_book_path(current_user) %>
