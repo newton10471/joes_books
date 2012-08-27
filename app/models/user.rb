@@ -13,4 +13,5 @@ class User < ActiveRecord::Base
 
   has_many :books
   has_many :votes
+  has_many :voted_books, :through => :votes, :source => :book
 end
