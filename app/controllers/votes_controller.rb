@@ -28,6 +28,7 @@ class VotesController < ApplicationController
   def new
     @vote = Vote.new
     @vote.user_id = current_user.id
+    @books = Book.all
 
     respond_to do |format|
       format.html # new.html.erb
