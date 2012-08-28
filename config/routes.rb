@@ -1,5 +1,7 @@
 JoesBooks::Application.routes.draw do
   
+  get "user/update"
+
   get "all_books/index"
 
   devise_for :users, :path => 'accounts'

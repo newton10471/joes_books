@@ -1,6 +1,6 @@
 <h1>Voting Form</h1></br>
 
-<%= form_for [current_user, @vote] do |f| %>
+<%= form_for [current_user] do |f| %>
   <% if @vote.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@vote.errors.count, "error") %> prohibited this vote from being saved:</h2>
@@ -31,10 +31,9 @@
 	    <td><%= User.find_by_id(book.user_id).first_name %></td>
 	    <td>
 	    <div class="field">
-    		<%= f.check_box :book_id %>
+         <%= check_box_tag :voted_book_ids, book.id, current_user.voted_books.include?(book), :name => 'user[voted_book_ids][]' -%>
   		</div>
 			</td> 
-	    <!-- <td><%= link_to 'Show', user_book_path(current_user, book) %></td> -->
 	  </tr>
 	<% end %>
 	</table>

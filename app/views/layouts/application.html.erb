@@ -6,6 +6,7 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
 
 <p class="notice"><%= notice %></p>
@@ -14,10 +15,12 @@
 <%= yield %>
 
 </p>
+
 <% if user_signed_in? %>
 	<%= link_to 'Vote', new_user_vote_path(current_user) %></p>
 	<%= link_to 'All Books', all_books_index_path %></p>
 	<%= link_to 'Sign out', destroy_user_session_path, :method => :delete %>
 <% end %>
+
 </body>
 </html>
