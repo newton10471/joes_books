@@ -1,6 +1,13 @@
 JoesBooks::Application.routes.draw do
   
-  get "all_votes/index"
+  get "static_pages/home"
+
+  get "static_pages/admin_home"
+
+  get "static_pages/help"
+
+  # get "all_votes/index"
+  resources :all_votes
 
   get "user/update"
 

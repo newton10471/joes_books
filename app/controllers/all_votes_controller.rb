@@ -1,6 +1,10 @@
 class AllVotesController < ApplicationController
   before_filter :authenticate_user!
 
+  def new
+  	Vote.delete_all 
+  end
+
   def index
   	@books = Book.all
   	@votes = Vote.all
