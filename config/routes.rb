@@ -1,5 +1,7 @@
 JoesBooks::Application.routes.draw do
   
+  get "all_votes/index"
+
   get "user/update"
 
   get "all_books/index"

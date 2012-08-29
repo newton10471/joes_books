@@ -5,4 +5,5 @@ class Book < ActiveRecord::Base
   validates :title, :uniqueness => true
 
   belongs_to :user	
+  has_many :votes
 end
