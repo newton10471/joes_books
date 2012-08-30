@@ -31,15 +31,15 @@ class VotesController < ApplicationController
     @vote.user_id = current_user.id
 
     # assign @books depending on state of election
-    if (second_round_started == false)
+    # if (second_round_started == false)
       @books = Book.all
-      second_round_started == true
-    else
+    #   second_round_started = true
+    # else
       # if second round of voting has started, books are a subset of Book.all:
       # - don't include books that got no votes
       # - take at least half of the number of existing books as before
-      @books = 
-    end
+    #   @books = 
+    # end
     
 
     respond_to do |format|
