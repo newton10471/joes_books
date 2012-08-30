@@ -1,5 +1,6 @@
 class VotesController < ApplicationController
   before_filter :authenticate_user!
+  @@second_round_started = false
 
   # GET /votes
   # GET /votes.json
@@ -28,7 +29,18 @@ class VotesController < ApplicationController
   def new
     @vote = Vote.new
     @vote.user_id = current_user.id
-    @books = Book.all
+
+    # assign @books depending on state of election
+    if (second_round_started == false)
+      @books = Book.all
+      second_round_started == true
+    else
+      # if second round of voting has started, books are a subset of Book.all:
+      # - don't include books that got no votes
+      # - take at least half of the number of existing books as before
+      @books = 
+    end
+    
 
     respond_to do |format|
       format.html # new.html.erb
@@ -48,6 +60,7 @@ class VotesController < ApplicationController
 
     respond_to do |format|
       if @vote.save
+        # flash message below?
         format.html { redirect_to @vote, notice: 'Vote was successfully created.' }
         format.json { render json: @vote, status: :created, location: @vote }
       else
