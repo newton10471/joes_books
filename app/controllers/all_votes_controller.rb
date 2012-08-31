@@ -6,6 +6,10 @@ class AllVotesController < ApplicationController
   	VotesController.second_round_started = false
   end
 
+  def complete_round
+    VotesController.second_round_started = true
+  end
+
   def index
   	@books = Book.all
   	@votes = Vote.all
