@@ -1,6 +1,11 @@
 class VotesController < ApplicationController
   before_filter :authenticate_user!
+
   @@second_round_started = false
+
+  def self.second_round_started=(my_param)
+    @@second_round_started = my_param
+  end 
 
   # GET /votes
   # GET /votes.json
@@ -31,15 +36,14 @@ class VotesController < ApplicationController
     @vote.user_id = current_user.id
 
     # assign @books depending on state of election
-    # if (second_round_started == false)
+    if (@@second_round_started == false)
       @books = Book.all
-    #   second_round_started = true
-    # else
+    else
       # if second round of voting has started, books are a subset of Book.all:
       # - don't include books that got no votes
       # - take at least half of the number of existing books as before
-    #   @books = 
-    # end
+      @books = Book.all.select {|book| book.votes.count > 0}
+    end
     
 
     respond_to do |format|

@@ -3,7 +3,7 @@ class AllVotesController < ApplicationController
 
   def new
   	Vote.delete_all 
-  	second_round_started = false
+  	VotesController.second_round_started = false
   end
 
   def index
