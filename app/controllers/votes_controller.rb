@@ -37,7 +37,7 @@ class VotesController < ApplicationController
 
     # assign @books depending on state of election
     if (@@second_round_started == false)
-      @books = Book.all
+      @books = Book.find(:all, :order => 'votes_count DESC')
     else
       # if second round of voting has started, books are a subset of Book.all:
       # - don't include books that got no votes
