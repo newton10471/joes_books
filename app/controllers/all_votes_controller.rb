@@ -32,8 +32,8 @@ class AllVotesController < ApplicationController
         while book.votes.count > 1 
           book.votes.last.destroy
         end
-        # TODO: might also have to set owner of the remaining vote to a non-user?
-        # book.votes.first.user_id = User.find_by_first_name('nobody')
+        # set owner of the remaining vote to nobody
+        book.votes.first.user_id = User.find_by_email('nobody@nowhere.com')
       end
     end
   end

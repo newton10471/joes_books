@@ -1,12 +1,17 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.7'
+gem 'faker', '1.0.1'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'devise'
 gem 'pg'
+
+#group :test do 
+#  gem 'factory_girl_rails', '4.0.0'
+#end
 
 group :development do
   gem 'sqlite3'

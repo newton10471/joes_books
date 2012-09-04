@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   attr_accessible :first_name, :last_name, :voted_book_ids
 
   validates :first_name, :last_name, :email, :password, :password_confirmation, :presence => true
+  validates_uniqueness_of :email, :case_sensitive => false
 
   has_many :books
   has_many :votes
