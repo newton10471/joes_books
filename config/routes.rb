@@ -7,6 +7,7 @@ JoesBooks::Application.routes.draw do
   get "static_pages/help"
 
   get "all_votes/complete_round"
+  get "all_votes/winner"
   resources :all_votes
 
   get "user/update"

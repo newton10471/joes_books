@@ -8,6 +8,7 @@ class AllVotesController < ApplicationController
 
   def complete_round
     ConfigParameter.find_by_name("second_round_started").update_attributes(value: "true")
+    @winner = ""
     
     # for bottom nth of voted-for books, set their vote count to 0
 
@@ -17,8 +18,21 @@ class AllVotesController < ApplicationController
     @books = @books.select {|book| book.votes.count > 0}
 
     # remove the bottom n books
-    num_books_to_remove = @books.count / 3 # n = 1/3
-    p "===== NUMBER OF BOOKS TO REMOVE =====: #{num_books_to_remove}"
+    if @books.count > 2 
+      num_books_to_remove = @books.count / 3 # n = 1/3
+    elsif @books.count == 2
+      num_books_to_remove = 1
+    else
+      num_books_to_remove = 0
+      winner_array = @books.select {|book| book.votes.count > 0}
+      @winner = winner_array[0].title
+
+      p "===== WINNER =====: #{@winner}"
+
+      # and we should probably do something to stop voting
+      redirect_to all_votes_winner_path(@winner)
+    end
+
     count = 0
     @books.each do |book|
       if count < num_books_to_remove
