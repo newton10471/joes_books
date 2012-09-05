@@ -8,7 +8,12 @@ namespace :db do
 	  user_ids.delete(user_nobody)
 
 	  # determine the range of book ids
-	  book_ids = Book.all.map { |book| book.id }
+	  if (ConfigParameter.find_by_name("second_round_started").value == "false")
+	  	book_ids = Book.all.map { |book| book.id }
+	  else
+	  	book_list = Book.all.select { |book| book.votes.count > 0 }
+	  	book_ids = book_list.map { |book| book.id }
+	  end
 
 		# find the number of non-functional users
 		number_of_users = user_ids.count 

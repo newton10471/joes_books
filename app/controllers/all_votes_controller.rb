@@ -17,13 +17,14 @@ class AllVotesController < ApplicationController
     @books = @books.select {|book| book.votes.count > 0}
 
     # remove the bottom n books
-    num_books_to_remove = @books.count % 3 # n = 1/3
-    count = 1
+    num_books_to_remove = @books.count / 3 # n = 1/3
+    p "===== NUMBER OF BOOKS TO REMOVE =====: #{num_books_to_remove}"
+    count = 0
     @books.each do |book|
       if count < num_books_to_remove
         book.votes.delete_all
+        count += 1
       end
-      count += 1 
     end
 
     # remove all but the last vote on each remaining book
