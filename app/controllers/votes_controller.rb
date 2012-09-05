@@ -1,12 +1,6 @@
 class VotesController < ApplicationController
   before_filter :authenticate_user!
 
-  @@second_round_started = false
-
-  def self.second_round_started=(my_param)
-    @@second_round_started = my_param
-  end 
-
   # GET /votes
   # GET /votes.json
   def index
@@ -36,8 +30,8 @@ class VotesController < ApplicationController
     @vote.user_id = current_user.id
 
     # assign @books depending on state of election
-    if (@@second_round_started == false)
-      @books = Book.find(:all, :order => 'votes_count DESC')
+    if (ConfigParameter.find_by_name("second_round_started").value == "false" )
+      @books = Book.all
     else
       # if second round of voting has started, books are a subset of Book.all:
       # - don't include books that got no votes

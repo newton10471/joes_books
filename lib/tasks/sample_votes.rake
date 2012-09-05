@@ -1,6 +1,6 @@
 namespace :db do
   desc "Generate sample votes"
-  task populate: :environment do
+  task vote: :environment do
 
 	  # determine the range of non-functional user ids
 	  user_ids = User.all.map {|user| user.id }

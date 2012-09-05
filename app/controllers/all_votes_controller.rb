@@ -3,11 +3,11 @@ class AllVotesController < ApplicationController
 
   def new
   	Vote.delete_all 
-  	VotesController.second_round_started = false
+    ConfigParameter.find_by_name("second_round_started").update_attributes(value: "false")
   end
 
   def complete_round
-    VotesController.second_round_started = true
+    ConfigParameter.find_by_name("second_round_started").update_attributes(value: "true")
     
     # for bottom nth of voted-for books, set their vote count to 0
 
