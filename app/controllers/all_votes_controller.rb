@@ -52,6 +52,8 @@ class AllVotesController < ApplicationController
   end
 
   def index
+    # TODO: change this sloppy way on next line of resyncing votes_count for all books at the last minute
+    Book.all.each {|book| Book.reset_counters(book.id, :votes)} 
   	@books = Book.find(:all, :order => 'votes_count DESC')
   	@votes = Vote.all
 
