@@ -14,5 +14,6 @@
 /log/*.log
 /tmp
 
-# ignore the next file for security reasons
+# ignore these files for security reasons
 /config/initializers/setup_mail.rb
+/lib/tasks/create_users.rake
