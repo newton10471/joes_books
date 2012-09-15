@@ -14,7 +14,7 @@ JoesBooks::Application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
@@ -37,4 +37,20 @@ JoesBooks::Application.configure do
 
   # required for devise to work
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  # following added at the suggestion of 
+  # http://stackoverflow.com/questions/4347601/getting-action-mailer-devise-to-play-together-nicely
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+
+  # this from
+  # http://edgeguides.rubyonrails.org/action_mailer_basics.html#example-action-mailer-configuration
+  config.action_mailer.smtp_settings = {
+  :address              => "smtp.gmail.com",
+  :port                 => 587,
+  :domain               => 'gmail.com',
+  :user_name            => 'joesbooks113',
+  :password             => 'fine4now',
+  :authentication       => 'plain',
+  :enable_starttls_auto => true  }
 end
