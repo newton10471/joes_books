@@ -45,6 +45,8 @@ JoesBooks::Application.configure do
 
   # this from
   # http://edgeguides.rubyonrails.org/action_mailer_basics.html#example-action-mailer-configuration
+  # We can put all the actual passwords in a yaml file, by putting read.yaml statements below 
+  # instead of the actual passwords, etc. in the code.
   config.action_mailer.smtp_settings = {
   :address              => "smtp.gmail.com",
   :port                 => 587,
