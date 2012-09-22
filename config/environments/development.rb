@@ -48,11 +48,11 @@ JoesBooks::Application.configure do
   # We can put all the actual passwords in a yaml file, by putting read.yaml statements below 
   # instead of the actual passwords, etc. in the code.
   config.action_mailer.smtp_settings = {
-  :address              => "smtp.gmail.com",
+  :address              => APP_CONFIG['smtp_server'],
   :port                 => 587,
-  :domain               => 'gmail.com',
-  :user_name            => 'joesbooks113@gmail.com',
-  :password             => 'fine4now',
+  :domain               => APP_CONFIG['domain'],
+  :user_name            => APP_CONFIG['username'],
+  :password             => APP_CONFIG['password'],
   :authentication       => 'plain',
   :enable_starttls_auto => true  }
 end

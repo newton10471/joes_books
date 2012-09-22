@@ -17,3 +17,4 @@
 # ignore these files for security reasons
 #/config/environments
 #/lib/tasks/create_users.rake
+/config/config.yml
