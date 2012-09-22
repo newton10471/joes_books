@@ -71,11 +71,11 @@ JoesBooks::Application.configure do
   config.action_mailer.delivery_method = :smtp
 
   config.action_mailer.smtp_settings = {
-  :address              => APP_CONFIG['smtp_server'],
+  :address              => PROD_SMTP_SERVER,
   :port                 => 587,
-  :domain               => APP_CONFIG['domain'],
-  :user_name            => APP_CONFIG['username'],
-  :password             => APP_CONFIG['password'],
+  :domain               => PROD_DOMAIN,
+  :user_name            => PROD_USERNAME,
+  :password             => PROD_PASSWORD,
   :authentication       => 'plain',
   :enable_starttls_auto => true  }
 end
