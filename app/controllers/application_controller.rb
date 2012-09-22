@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   def user_blocked?
     if current_user.present? && current_user.blocked?
       sign_out current_user
-      flash[:notice] = "This account is blocked."
+      flash[:notice] = "This account is blocked.  Accounts are blocked on signup; if you just signed up an email was sent to the site admins to approve your user id creation."
       root_path
     end
   end

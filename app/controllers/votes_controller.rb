@@ -59,7 +59,8 @@ class VotesController < ApplicationController
     respond_to do |format|
       if @vote.save
         # flash message below?
-        format.html { redirect_to @vote, notice: 'Vote was successfully created.' }
+        flash[:notice] = "Vote was successfully cast!"
+        format.html { redirect_to @vote, notice: 'Vote was successfully cast.' }
         format.json { render json: @vote, status: :created, location: @vote }
       else
         format.html { render action: "new" }

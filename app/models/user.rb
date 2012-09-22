@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  # before_save :set_user_blocked
+  before_create :set_user_blocked
   # after_create :email_admin
 
   # Include default devise modules. Others available are:
@@ -26,5 +26,6 @@ class User < ActiveRecord::Base
 
     def email_admin
       # call to Devise custom mailer to notify admin by email that there's a new user to unlock
+      UserMailer.notify_admin_of_new_user(self).deliver
     end
 end
