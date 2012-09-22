@@ -40,7 +40,7 @@ JoesBooks::Application.configure do
 
   # following added at the suggestion of 
   # http://stackoverflow.com/questions/4347601/getting-action-mailer-devise-to-play-together-nicely
-  config.action_mailer.perform_deliveries = true
+  #config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
 
   # this from
@@ -51,7 +51,7 @@ JoesBooks::Application.configure do
   :address              => "smtp.gmail.com",
   :port                 => 587,
   :domain               => 'gmail.com',
-  :user_name            => 'joesbooks113',
+  :user_name            => 'joesbooks113@gmail.com',
   :password             => 'fine4now',
   :authentication       => 'plain',
   :enable_starttls_auto => true  }

@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   before_create :set_user_blocked
-  # after_create :email_admin
+  after_create :email_admin_and_user
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -24,8 +24,10 @@ class User < ActiveRecord::Base
       self.blocked = true
     end
 
-    def email_admin
-      # call to Devise custom mailer to notify admin by email that there's a new user to unlock
-      UserMailer.notify_admin_of_new_user(self).deliver
+    def email_admin_and_user
+      # call to ActionMailer to notify admin by email that there's a new user to unlock
+      UserMailer.admin_notify_email(self).deliver
+      # send welcome email to new user
+      UserMailer.welcome_email(self).deliver
     end
 end
