@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>Welcome to Joe's Books, <%= @user.first_name %></h1>
+    <p>
+      You have successfully signed up to <%= @url %>,
+      your username is: <%= @user.email %>.<br/>
+    </p>
+    <p>
+      A notification email has been sent to the site admins to 
+      enable your new ID for login.  Once you get a confirmation
+      from them, you can login to the site by following this
+      link: <%= @url %>.
+    </p>
+    <p>Thanks for joining and have a great day!</p>
+  </body>
+</html>

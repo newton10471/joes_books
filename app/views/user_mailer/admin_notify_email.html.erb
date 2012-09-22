@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>User <%= @user.first_name + " " + @user.last_name %> signed up at Joe's Books.</h1>
+    <p>
+      Their email / username is: <%= @user.email %>.<br/>
+    </p>
+    <p>
+      To login to the site, just follow this link: <%= @url %>.
+    </p>
+    <p>Thanks for being such a great admin, and have a great day!</p>
+  </body>
+</html>
