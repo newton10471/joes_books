@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.7'
+gem 'bootstrap-sass', '2.0.4'
 gem 'faker', '1.0.1'
 gem 'cancan', '1.6.8'
 

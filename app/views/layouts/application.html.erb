@@ -1,34 +1,47 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>JoesBooks</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
+	<head>
+	  <title>JoesBooks</title>
+	  <%= stylesheet_link_tag    "application", media: "all" %>
+	  <%= javascript_include_tag "application" %>
+	  <%= csrf_meta_tags %>
+	  <!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	</head>
 
-<body>
+	<body>
+		<header class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<%= link_to "joe\'s books", '#', id: "logo" %>
+					
+					<nav>
+						<ul class="nav pull-right">
+							<% if user_signed_in? %>
+								<%= link_to 'Home', user_books_path(current_user) %>
+								<%= link_to 'Vote', new_user_vote_path(current_user) %>
+								<%= link_to 'All books', all_books_index_path %>
+								<%= link_to 'All votes', all_votes_path %>
+								<% if current_user.admin? %>
+									<%= link_to 'Admin page', static_pages_admin_home_path %>
+								<% end %>
+								<%= link_to 'Sign out', destroy_user_session_path, method: "delete" %>
+								Signed in as user 
+								<%= current_user.email %> 
+							<% end %>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</header>
+		<div class="container">
+			<p class="notice"><%= notice %></p>
+			<p class="alert"><%= alert %></p>
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+			<%= yield %>
 
-<%= yield %>
-
-</p>
-
-<% if user_signed_in? %>
-	<%= link_to 'Home', user_books_path(current_user) %></p>
-	<%= link_to 'Vote', new_user_vote_path(current_user) %></p>
-	<%= link_to 'All Books', all_books_index_path %></p>
-	<%= link_to 'All Votes', all_votes_path %></p>
-	<% if current_user.admin? %>
-		<%= link_to 'Admin Page', static_pages_admin_home_path %></p>
-	<% end %>
-	<%= link_to 'Sign out', destroy_user_session_path, :method => :delete %>
-	</p>
-	Signed in as user 
-	<%= current_user.email %> 
-<% end %>
-
-</body>
+			</p>
+		</div>
+	</body>
 </html>
