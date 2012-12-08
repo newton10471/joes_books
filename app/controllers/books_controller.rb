@@ -1,5 +1,8 @@
 class BooksController < ApplicationController
   before_filter :authenticate_user!
+  require 'vacuum'
+  require "rexml/document"
+  include REXML
 
   # GET /books
   # GET /books.json
@@ -39,11 +42,31 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
   end
 
+  def get_book_asin(keywords)
+    req = Vacuum.new
+    # puts "key is #{ENV['AWS_KEY']}"
+    # req.configure key:    ENV['AWS_KEY'],
+    #               secret: ENV['AWS_SECRET'],
+    #               tag:    ENV['AWS_TAG']
+    req.configure key:    'AKIAIVHHIPFRA32PUBHA',
+                  secret: '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',
+                  tag:    'booclu00-20'
+
+    res = req.get query: { 'Operation'   => 'ItemSearch',
+                           'SearchIndex' => 'Books',
+                           'Keywords'    => keywords }
+
+    doc = Document.new(res.body)
+    detailPageURL = XPath.first(doc, "//DetailPageURL") 
+    return /(.*ASIN%3D)(.*$)/.match(detailPageURL.text)[2]
+  end
+
   # POST /books
   # POST /books.json
   def create
     @book = Book.new(params[:book])
-    @book.user_id = current_user.id # I don't even know if you can do this
+    @book.user_id = current_user.id
+    @book.asin = get_book_asin(@book.title + " " + @book.author) 
 
     respond_to do |format|
       if @book.save

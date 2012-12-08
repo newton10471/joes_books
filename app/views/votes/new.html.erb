@@ -27,7 +27,7 @@
 	  <tr>
 	    <td><%= book.title %></td>
 	    <td><%= book.author %></td>
-	    <td><%= link_to  'On Amazon.com', raw(get_amazon_link(book.title, book.author)) %></td>
+	    <td><%= link_to  raw(amazon_pic_url(book.asin)) %>
 	    <td><%= User.find_by_id(book.user_id).first_name %></td>
 	    <td>
 	    <div class="field">

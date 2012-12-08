@@ -12,7 +12,7 @@
 
 <p>
   <b>Amazon link:</b>
-  <%= @book.amazon_link %>
+  <%= link_to  raw(amazon_pic_url(@book.asin)) %>
 </p>
 
 
