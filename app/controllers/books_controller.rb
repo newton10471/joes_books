@@ -62,7 +62,9 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(params[:book])
     @book.user_id = current_user.id
-    @book.asin = get_book_asin(@book.title + " " + @book.author) 
+    if @book.asin.nil?  # if current_user didn't enter an ASIN, then look it up
+      @book.asin = get_book_asin(@book.title + " " + @book.author) 
+    end
 
     respond_to do |format|
       if @book.save
