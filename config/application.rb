@@ -58,5 +58,8 @@ module JoesBooks
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # Following is required by heroku cedar stack.  Added by Matt on 12/7/2012
+    config.assets.initialize_on_precompile = false
   end
 end
