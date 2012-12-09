@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  before_create :set_user_blocked
+  # before_create :set_user_blocked
   after_create :email_admin_and_user
 
   # Include default devise modules. Others available are:
