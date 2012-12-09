@@ -44,9 +44,13 @@ class BooksController < ApplicationController
 
   def get_book_asin(keywords)
     req = Vacuum.new
-    req.configure key:    ENV['AWS_KEY'],
-                  secret: ENV['AWS_SECRET'],
-                  tag:    ENV['AWS_TAG']
+    # req.configure key:    ENV['AWS_KEY'],
+    #               secret: ENV['AWS_SECRET'],
+    #               tag:    ENV['AWS_TAG']
+
+    req.configure key:    'AKIAIVHHIPFRA32PUBHA',
+                  secret: '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', 
+                  tag:    'booclu00-20'
 
     res = req.get query: { 'Operation'   => 'ItemSearch',
                            'SearchIndex' => 'Books',
@@ -62,7 +66,7 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(params[:book])
     @book.user_id = current_user.id
-    if @book.asin.nil?  # if current_user didn't enter an ASIN, then look it up
+    if @book.asin.blank?  # if current_user didn't enter an ASIN, then look it up
       @book.asin = get_book_asin(@book.title + " " + @book.author) 
     end
 
