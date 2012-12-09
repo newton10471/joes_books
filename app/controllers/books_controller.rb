@@ -44,13 +44,9 @@ class BooksController < ApplicationController
 
   def get_book_asin(keywords)
     req = Vacuum.new
-    # req.configure key:    ENV['AWS_KEY'],
-    #               secret: ENV['AWS_SECRET'],
-    #               tag:    ENV['AWS_TAG']
-
-    req.configure key:    'AKIAIVHHIPFRA32PUBHA',
-                  secret: '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', 
-                  tag:    'booclu00-20'
+    req.configure key:    ENV['AWS_KEY'],
+                  secret: ENV['AWS_SECRET'],
+                  tag:    ENV['AWS_TAG']
 
     res = req.get query: { 'Operation'   => 'ItemSearch',
                            'SearchIndex' => 'Books',
