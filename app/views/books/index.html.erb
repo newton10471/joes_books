@@ -11,6 +11,10 @@
     <th></th>
   </tr>
 
+<% if @books.count.zero? %>
+  <p><center>You do not currently have any books.  To add some, click New Book below.</center></p></br>
+<% end %>
+
 <% @books.each do |book| %>
   <tr>
     <td><%= book.title %></td>
