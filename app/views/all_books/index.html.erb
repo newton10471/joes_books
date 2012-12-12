@@ -17,6 +17,7 @@
 	  <td><%= link_to  raw(amazon_pic_url(book.asin)) %>
 	  <td><%= User.find_by_id(book.user_id).first_name %></td>
 	  <!--  <td><input type="checkbox" name="size[]"></td> -->
+	  <!--  <td><%= link_to 'Discuss', all_book_path(book) %></td> -->
 	</tr>
 	<% end %>
 </table>

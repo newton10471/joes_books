@@ -1,0 +1,14 @@
+<footer class="footer">
+  <small>
+    <% if user_signed_in? %>
+      Signed in as user <%= current_user.email %>
+    <% end %>
+  </small>
+  <nav>
+    <ul>
+      <li><%= link_to "About",   '#' %></li>
+      <li><%= link_to "Contact", '#' %></li>
+      <li><a href="http://nytimes.com/">News</a></li>
+    </ul>
+  </nav>
+</footer>

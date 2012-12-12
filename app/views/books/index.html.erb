@@ -22,6 +22,7 @@
     <td><%= link_to  raw(amazon_pic_url(book.asin)) %>
     <td><%= link_to 'Edit', edit_user_book_path(current_user, book) %></td>
     <td><%= link_to 'Destroy', [current_user, book], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Discuss', user_book_path(current_user, book) %></td>
   </tr>
 <% end %>
 </table>
