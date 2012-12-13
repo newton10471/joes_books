@@ -10,7 +10,17 @@
             <li><%= link_to 'All books', all_books_index_path %></li>
             <li><%= link_to 'All votes', all_votes_path %></li>
             <% if current_user.admin? %>
-              <li><%= link_to 'Admin page', static_pages_admin_home_path %></li>
+              <li id="fat-menu" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Admin <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to 'Start a New Election', new_all_vote_path, data: { confirm: 'Are you sure? This will delete all current votes.' } %></li>
+                <li><%= link_to 'Complete a Voting Round', all_votes_complete_round_path, data: { confirm: 'Are you sure? This will reset all current votes, and advance to the next round.' } %></li>
+                <li><%= link_to 'Send Email Reminder to Non-Voters', '#' %></li>
+                <li><%= link_to 'Compose Message to All Users', '#' %></li>
+              </ul>
+            </li>
             <% end %>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">

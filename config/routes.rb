@@ -12,7 +12,7 @@ JoesBooks::Application.routes.draw do
   get "user/update"
 
   get "all_books/index"
-  # resources :all_books
+  resources :all_books
 
   devise_for :users, :path => 'accounts'
 
@@ -21,7 +21,7 @@ JoesBooks::Application.routes.draw do
     resources :votes
   end
 
-  resources :books
+  # resources :books
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

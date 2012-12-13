@@ -12,7 +12,7 @@
 
 	<% @books.each do |book| %>
 	<tr>
-	  <td><%= book.title %></td>
+	  <td><%= link_to book.title, all_book_path(book) %></td>
 	  <td><%= book.author %></td>
     <td><%= link_to  raw(amazon_pic_url(book.asin)) %>
 	  <td><%= User.find_by_id(book.user_id).first_name %></td>
