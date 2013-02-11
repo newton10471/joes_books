@@ -1,25 +1,4 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Title:</b>
-  <%= @book.title %>
-</p>
-
-<p>
-  <b>Author:</b>
-  <%= @book.author %>
-</p>
-
-<p>
-  <b>Amazon link:</b>
-  <%= link_to  raw(amazon_pic_url(@book.asin)) %>
-</p>
-
-
-<%= link_to 'Edit', edit_user_book_path(@book) %> |
-<%= link_to 'Back', user_books_path %> 
-
-<%= form_for @comment do |f| %>
+<%= form_for @comment, :url => user_book_path(current_user, Book.find(params[:book_id])) do |f| %>
   <% if @comment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
@@ -33,16 +12,12 @@
 
   <div class="field">
     <%= f.text_area :text, placeholder: "Compose new comment here ..." %>
-  </div> 
+  </div>
+  
+  # this passes along the :book_id param we received from the linking page
+  <%= hidden_field_tag(:book_id, params[:book_id]) %>  
 
   <div class="actions">
     <%= f.submit "Post Comment", class: "btn btn-large btn-primary" %>
   </div>
-<% end %>
-
-<h1>Comments for this Book:</h1>
-</br>
-<% @comments.each do |comment| %>
-	<%= comment.text %>
-	<%= User.find(comment.user_id) %>
 <% end %>
