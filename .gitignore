@@ -18,3 +18,5 @@
 #/config/environments
 #/lib/tasks/create_users.rake
 /.env
+
+tags
