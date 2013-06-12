@@ -16,10 +16,21 @@ gem 'pg'
 #group :test do 
 #  gem 'factory_girl_rails', '4.0.0'
 #end
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'jasmine'
+  gem 'factory_girl_rails'
+  gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
+  gem 'pry-debugger'
+end
+
 
 group :development do
   gem 'sqlite3'
-  gem 'annotate'
+  gem 'quiet_assets'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'awesome_print'
 end
 
 # Gems used only for assets and not required
