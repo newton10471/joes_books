@@ -19,6 +19,7 @@ gem 'pg'
 
 group :development do
   gem 'sqlite3'
+  gem 'annotate'
 end
 
 # Gems used only for assets and not required
