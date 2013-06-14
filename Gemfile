@@ -17,6 +17,7 @@ gem 'pg'
 #  gem 'factory_girl_rails', '4.0.0'
 #end
 group :development, :test do
+  gem 'simplecov', require: false
   gem 'rspec-rails'
   gem 'jasmine'
   gem 'factory_girl_rails'
