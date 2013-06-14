@@ -29,7 +29,7 @@
 
 FactoryGirl.define do
   sample_login = ['jack', 'lucy', 'dave', 'lily', 'john', 'beth'].sample
-  sequence(:first_name) { |n| "#{sample_loghn}#{n}" }
+  sequence(:first_name) { |n| "#{sample_login}#{n}" }
   sequence(:last_name) { |n| "#{sample_login}#{n}" }
   sequence(:email) { |n| "#{sample_login}#{n}@example.com".downcase }
 
