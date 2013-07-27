@@ -12,7 +12,7 @@
 
 <p>
   <b>Amazon link:</b>
-  <%= link_to  raw(amazon_pic_url(@book.asin)) %>
+  <%= link_to raw(amazon_pic_url(@book.asin)) %>
 </p>
 
 
@@ -33,6 +33,7 @@
 
   <div class="field">
     <%= f.text_area :text, placeholder: "Compose new comment here ..." %>
+    <%= f.hidden_field :book_id, :value => @book.id %>
   </div> 
 
   <div class="actions">

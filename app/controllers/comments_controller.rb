@@ -18,7 +18,6 @@ class CommentsController < ApplicationController
 
     @comment = Comment.new(params[:comment])
     @comment.user_id = current_user.id
-    @comment.book_id = params[:book_id]
 
     respond_to do |format|
       if @comment.save
