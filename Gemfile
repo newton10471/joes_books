@@ -24,6 +24,7 @@ group :development, :test do
   gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
   gem 'pry-debugger'
   gem 'capybara'
+  gem 'zeus'
 end
 
 
