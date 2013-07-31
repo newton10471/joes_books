@@ -41,7 +41,7 @@ JoesBooks::Application.configure do
   # following added at the suggestion of 
   # http://stackoverflow.com/questions/4347601/getting-action-mailer-devise-to-play-together-nicely
   #config.action_mailer.perform_deliveries = true
-  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :test
 
   # this from
   # http://edgeguides.rubyonrails.org/action_mailer_basics.html#example-action-mailer-configuration
