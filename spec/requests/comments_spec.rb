@@ -9,7 +9,8 @@ describe "Comments" do
     end
   end
 
-  describe "create a comment" do
-    
+  describe "user can create a comment" do
+    # go to a book page
+    # create a comment on that book
   end
 end

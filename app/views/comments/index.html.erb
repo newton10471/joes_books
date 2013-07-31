@@ -19,10 +19,10 @@
 
 <% @comments.each do |comment| %>
   <tr>
-    <td><%= comment.user_id %></td>
-    <td><%= comment.user_id %></td>
-    <td><%= comment.book_id %></td>
-    <td><%= comment.book_id %></td>
+    <td><%= User.find(comment.user_id).first_name %></td>
+    <td><%= User.find(comment.user_id).last_name %></td>
+    <td><%= Book.find(comment.book_id).title %></td>
+    <td><%= Book.find(comment.book_id).author %></td>
     <td><%= comment.text %>
   </tr>
 <% end %>
