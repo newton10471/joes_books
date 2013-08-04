@@ -58,8 +58,15 @@ describe "Comments" do
   end
 
   describe "user can create a comment" do
-    # go to a book page
-    # create a comment on that book
-    pending
+    it 'should allow a user to create a comment' do 
+      @user = FactoryGirl.create(:user) 
+      sign_in_user @user 
+      @book = FactoryGirl.create(:book, user: @user, asin: '0393972836')
+#      binding.pry
+      visit user_book_path @user, @book
+      fill_in 'comment_text', with: 'test comment text'
+      click_on 'Post Comment'
+      expect(page).to have_content 'Comment was successfully created'
+    end
   end
 end
