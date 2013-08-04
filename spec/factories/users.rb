@@ -7,7 +7,6 @@ FactoryGirl.define do
     last_name
     email
     password %w(fsd87x fs837s s0ifss).sample
-    password_confirmation { password}
-
+    password_confirmation { password }
   end
 end
