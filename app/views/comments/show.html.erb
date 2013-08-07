@@ -1,22 +1,14 @@
-<p id="notice"><%= notice %></p>
-
 <p>
-  <b>Title:</b>
-  <%= @book.title %>
+  <b>Book Title:</b>
 </p>
 
 <p>
   <b>Author:</b>
-  <%= @book.author %>
 </p>
 
 <p>
-  <b>Amazon link:</b>
-  <%= link_to  raw(amazon_pic_url(@book.asin)) %>
+  <b>Comment Text:</b>
+  <%= @comment.text %>
 </p>
 
-
-<%= link_to 'Edit', edit_user_book_path(@book) %> |
-<%= link_to 'Back', user_books_path %> |
-<%= link_to 'New Comment', '#' %>
 

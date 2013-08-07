@@ -14,14 +14,12 @@ class CommentsController < ApplicationController
   end
 
   def create
-    puts " ----- PARAMS IN CREATE: #{params}"
-
     @comment = Comment.new(params[:comment])
     @comment.user_id = current_user.id
 
     respond_to do |format|
       if @comment.save
-        redirect_to @comment, notice: 'Comment was successfully created.' 
+        format.html { redirect_to user_book_path(current_user, Book.find(@comment.book_id)), notice: 'Comment was successfully created.' }
       else
         render action: "new"
       end
