@@ -1,45 +1,58 @@
 class BooksController < ApplicationController
-  before_filter :authenticate_user!
   require 'vacuum'
   require "rexml/document"
-  include REXML
+  # include REXML
 
-  # GET /books
-  # GET /books.json
+  before_filter :authenticate_user!
+
   def index
     @books = Book.find_all_by_user_id(current_user)
-
-    respond_to do |format|
-      format.html
-      format.json { render json: @books }
-    end
   end
 
-  # GET /books/1
-  # GET /books/1.json
   def show
     @book = Book.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @book }
-    end
+    @comments = @book.comments
+    @comment = Comment.new(:book_id => params[:id])
+    # @comment = Comment.new(params[:id])
   end
 
-  # GET /books/new
-  # GET /books/new.json
   def new
     @book = Book.new
+  end
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @book }
+  def edit
+    @book = Book.find(params[:id])
+  end
+
+  def create
+    @book = Book.new(params[:book])
+    @book.user_id = current_user.id
+    if @book.asin.blank?  # if current_user didn't enter an ASIN, then look it up
+      @book.asin = get_book_asin(@book.title + " " + @book.author) 
+    end
+
+    if @book.save
+      redirect_to [current_user, @book], notice: 'Book was successfully created.'
+    else
+      render action: "new"
     end
   end
 
-  # GET /books/1/edit
-  def edit
+  def update
     @book = Book.find(params[:id])
+
+    if @book.update_attributes(params[:book])
+      redirect_to [current_user, @book], notice: 'Book was successfully updated.' 
+    else
+      render action: "edit" 
+    end
+  end
+
+  def destroy
+    @book = Book.find(params[:id])
+    @book.destroy
+
+    redirect_to user_books_url 
   end
 
   def get_book_asin(keywords)
@@ -52,57 +65,10 @@ class BooksController < ApplicationController
                            'SearchIndex' => 'Books',
                            'Keywords'    => keywords }
 
-    doc = Document.new(res.body)
+    # do this to avoid using 'include REXML' above and running into Comment class name clash documented in 
+    # https://groups.google.com/forum/?hl=en&fromgroups=#!topic/rubyonrails-talk/7RcK66ML_Xo
+    doc = REXML::Document.new(res.body)
     detailPageURL = XPath.first(doc, "//DetailPageURL") 
     return /(.*ASIN%3D)(.*$)/.match(detailPageURL.text)[2]
   end
-
-  # POST /books
-  # POST /books.json
-  def create
-    @book = Book.new(params[:book])
-    @book.user_id = current_user.id
-    if @book.asin.blank?  # if current_user didn't enter an ASIN, then look it up
-      @book.asin = get_book_asin(@book.title + " " + @book.author) 
-    end
-
-    respond_to do |format|
-      if @book.save
-        format.html { redirect_to [current_user, @book], notice: 'Book was successfully created.' }
-        format.json { render json: @book, status: :created, location: @book }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @book.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PUT /books/1
-  # PUT /books/1.json
-  def update
-    @book = Book.find(params[:id])
-
-    respond_to do |format|
-      if @book.update_attributes(params[:book])
-        format.html { redirect_to [current_user, @book], notice: 'Book was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @book.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /books/1
-  # DELETE /books/1.json
-  def destroy
-    @book = Book.find(params[:id])
-    @book.destroy
-
-    respond_to do |format|
-      format.html { redirect_to user_books_url }
-      format.json { head :no_content }
-    end
-  end
-
 end

@@ -47,6 +47,7 @@ class User < ActiveRecord::Base
   has_many :books
   has_many :votes
   has_many :voted_books, :through => :votes, :source => :book
+  has_many :comments
 
   private
     def set_user_blocked

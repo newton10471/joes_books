@@ -56,10 +56,5 @@ class AllVotesController < ApplicationController
     Book.all.each {|book| Book.reset_counters(book.id, :votes)} 
   	@books = Book.find(:all, :order => 'votes_count DESC')
   	@votes = Vote.all
-
-    respond_to do |format|
-      format.html
-      format.json { render json: @books }
-    end
   end
 end

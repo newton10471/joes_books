@@ -1,0 +1,32 @@
+<h1>Comment List</h1>
+</br>
+
+<table class="table table-striped table-condensed">
+  <tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Book Title</th>
+    <th>Book Author</th>
+    <th>Comment Text</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% if @comments.count.zero? %>
+  <p><center>There are not currently any comments.</center></p></br>
+<% end %>
+
+<% @comments.each do |comment| %>
+  <tr>
+    <td><%= User.find(comment.user_id).first_name %></td>
+    <td><%= User.find(comment.user_id).last_name %></td>
+    <td><%= Book.find(comment.book_id).title %></td>
+    <td><%= Book.find(comment.book_id).author %></td>
+    <td><%= comment.text %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+

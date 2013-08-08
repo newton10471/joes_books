@@ -13,16 +13,16 @@
 #
 
 FactoryGirl.define do
+  sequence(:title) {|n| "Title#{n}"}
+  sequence(:author) {|n| "Author#{n}"}
   factory :book do
-    sequence(:title) { |n| "book#{n}" }
-    author "Brad,Ediger"
-    asin "978-7-121-11096-2"
-    user
+    title
+    author
+  end
 
-    factory :invalid_book do
-      title nil
-      author nil
-      user nil
-    end
+  factory :invalid_book do
+    title nil
+    author nil
+    user nil
   end
 end

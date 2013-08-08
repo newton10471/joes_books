@@ -27,18 +27,20 @@
 #  blocked                :boolean          default(FALSE)
 #
 
-FactoryGirl.define do
-  sample_login = ['jack', 'lucy', 'dave', 'lily', 'john', 'beth'].sample
-  sequence(:first_name) { |n| "#{sample_login}#{n}" }
-  sequence(:last_name) { |n| "#{sample_login}#{n}" }
-  sequence(:email) { |n| "#{sample_login}#{n}@example.com".downcase }
+#FactoryGirl.define do
+#  sample_login = ['jack', 'lucy', 'dave', 'lily', 'john', 'beth'].sample
+#  sequence(:first_name) { |n| "#{sample_login}#{n}" }
+#  sequence(:last_name) { |n| "#{sample_login}#{n}" }
+#  sequence(:email) { |n| "#{sample_login}#{n}@example.com".downcase }
 
+FactoryGirl.define do
+  sequence(:first_name) {|n| "Firstname#{n}"}
+  sequence(:last_name) {|n| "Lastname#{n}"}
+  sequence(:email) { |n| "email#{n}@example.com"}
   factory :user do
     first_name
     last_name
     email
-    password ['DJX5nvyX', 'GG83Sr4{', '_pW.2P*8', 'MH^IN3B_'].sample
-    password_confirmation { password }
 
     # create role user for all roles
     #   
@@ -46,5 +48,8 @@ FactoryGirl.define do
     #   roles ["admin"]
     # end
     #   
+
+    password %w(fsd87x fs837s s0ifss).sample
+    password_confirmation { password }
   end
 end

@@ -11,11 +11,12 @@ gem 'vacuum', '0.3.0'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'devise'
-gem 'pg'
 
-#group :test do 
-#  gem 'factory_girl_rails', '4.0.0'
-#end
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
+end
+
 group :development, :test do
   gem 'simplecov', require: false
   gem 'rspec-rails'
@@ -23,6 +24,8 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
   gem 'pry-debugger'
+  gem 'capybara', '2.0.0'
+  gem 'zeus'
 end
 
 
