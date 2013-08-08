@@ -42,6 +42,11 @@
 <h1>Comments for this Book:</h1>
 </br>
 <% @comments.each do |comment| %>
-	<%= comment.text %>
-	<%= User.find(comment.user_id) %>
+  <p><%= comment.text %><br/>
+  Posted at <%= comment.created_at.to_s %> by <%= User.find(comment.user_id).email %>.
+  <% if comment.user_id == current_user.id %>
+    <br/>
+    Edit
+  <% end %>
+  </p>
 <% end %>
