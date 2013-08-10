@@ -14,7 +14,7 @@
 </p>
 
 
-<%= link_to 'Edit', edit_user_book_path(@book) %> |
+<%= link_to 'Edit', edit_user_book_path(current_user, @book.id) %> |
 <%= link_to 'Back', user_books_path %> 
 
 <%= form_for @comment do |f| %>
