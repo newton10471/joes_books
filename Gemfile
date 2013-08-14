@@ -28,6 +28,9 @@ group :development, :test do
   gem 'pry-debugger'
   gem 'capybara', '2.0.0'
   gem 'zeus'
+  gem 'cucumber-rails', require: false
+  gem 'database_cleaner'
+  gem "cucumber-rails-training-wheels"
 end
 
 
