@@ -64,4 +64,7 @@ JoesBooks::Application.configure do
   :password             => ENV['JB_PASSWORD'],
   :authentication       => 'plain',
   :enable_starttls_auto => true  }
+
+  # for update to ruby 2.0.0 and Rails 4.0.0
+  config.eager_load = false
 end
