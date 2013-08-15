@@ -9,6 +9,7 @@
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
+/db/*.sqlite3-journal
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
@@ -18,5 +19,13 @@
 #/config/environments
 #/lib/tasks/create_users.rake
 /.env
-
 tags
+
+# Ignore other unneeded files.
+doc/
+*.swp
+*~
+.project
+.DS_Store
+.idea
+.secret

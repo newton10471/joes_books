@@ -6,7 +6,7 @@ class BooksController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @books = Book.find_all_by_user_id(current_user)
+    @books = Book.where(user_id: current_user)
   end
 
   def show
