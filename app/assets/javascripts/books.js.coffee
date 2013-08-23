@@ -3,14 +3,11 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $(document).ready ->
-  $('#ken').click ->
-  #$('.btn-primary').click ->
-  #event.preventDefault()
-  #console.log 'iken'
-    alert('hello')
+  $('form').submit ->
     $.ajax({
       type: 'POST',
-      url: '/',
-      data: 'Ken Comment'
+      url: '/comments',
+      dataType: 'json',
+      data: { comment: {text: "Comment from ajax", book_id: 1} }
     })
     return false
