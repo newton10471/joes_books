@@ -4,10 +4,13 @@
 
 $(document).ready ->
   $('form').submit ->
+    #event.preventDefault();
+    my_comment = $('#comment_text').val()
     $.ajax({
       type: 'POST',
       url: '/comments',
       dataType: 'json',
-      data: { comment: {text: "Comment from ajax", book_id: 1} }
+      data: { comment: {text: my_comment, book_id: 1} }
     })
+    $("p:last").append("<p>" + my_comment + "</p>")
     return false
