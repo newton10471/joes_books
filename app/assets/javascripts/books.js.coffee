@@ -6,11 +6,13 @@ $(document).ready ->
   $('form').submit ->
     #event.preventDefault();
     my_comment = $('#comment_text').val()
+    email = $('#current_user_id').text()
     $.ajax({
       type: 'POST',
       url: '/comments',
       dataType: 'json',
       data: { comment: {text: my_comment, book_id: 1} }
     })
-    $("p:last").append("<p>" + my_comment + "</p>")
+    $('#comment_text').val('')
+    $("p:last").append("<p>" + my_comment + "</p><p>Posted at date by "+email+"</p>")
     return false
