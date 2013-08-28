@@ -10,9 +10,10 @@ $(document).ready ->
     $.ajax({
       type: 'POST',
       url: '/comments',
-      dataType: 'json',
+      dataType: 'html',
       data: { comment: {text: my_comment, book_id: 1} }
-    })
+    }).done (data) ->
+      $("p:last").append(data)
     $('#comment_text').val('')
-    $("p:last").append("<p>" + my_comment + "</p><p>Posted at date by "+email+"</p>")
+    #$("p:last").append("<p>" + my_comment + "</p><p>Posted at date by "+email+"</p>")
     return false

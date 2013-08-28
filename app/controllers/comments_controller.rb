@@ -19,7 +19,8 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to user_book_path(current_user, Book.find(@comment.book_id)), notice: 'Comment was successfully created.' }
+        format.html { render partial: 'shared/comments', locals: {comment: @comment} }
+        #format.html { redirect_to user_book_path(current_user, Book.find(@comment.book_id)), notice: 'Comment was successfully created.' }
       else
         render action: "new"
       end
