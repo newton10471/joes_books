@@ -10,7 +10,7 @@ gem 'vacuum', '0.3.0'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'devise', '3.0.0.rc'
+gem 'devise' #, '3.0.0.rc'
 gem 'protected_attributes'
 
 
