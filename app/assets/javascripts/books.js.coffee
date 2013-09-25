@@ -3,15 +3,16 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $(document).ready ->
-  $('form').submit ->
+  $('form#new_comment').submit ->
     #event.preventDefault();
     my_comment = $('#comment_text').val()
     email = $('#current_user_id').text()
+    book_id = $('#comment_book_id').val()
     $.ajax({
       type: 'POST',
       url: '/comments',
       dataType: 'html',
-      data: { comment: {text: my_comment, book_id: 1} }
+      data: { comment: {text: my_comment, book_id: book_id} }
     }).done (data) ->
       $("p:last").append(data)
     $('#comment_text').val('')
