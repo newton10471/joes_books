@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.0.0'
+#ruby '2.0.0'
 
 gem 'rails', '4.0.0'
 gem 'bootstrap-sass', '2.0.4'
@@ -10,7 +10,7 @@ gem 'vacuum', '0.3.0'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'devise', '3.0.0.rc'
+gem 'devise'
 gem 'protected_attributes'
 
 
