@@ -1,7 +1,7 @@
-<p><%= comment.text %><br/>
+<p data-comment='<%="#{comment.id}"%>'><%= comment.text %><br/>
 Posted at <%= comment.created_at.to_s %> by <%= User.find(comment.user_id).email %>.
-<% if comment.user_id == current_user.id %>
+<% if comment.user == current_user %>
   <br/>
-  Edit
+  <button>Delete</button>
 <% end %>
 </p>

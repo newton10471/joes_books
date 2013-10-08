@@ -18,3 +18,13 @@ $(document).ready ->
     $('#comment_text').val('')
     #$("p:last").append("<p>" + my_comment + "</p><p>Posted at date by "+email+"</p>")
     return false
+
+  $('button').click ->
+    comment = $(this).parent()
+    comment_id = comment.data('comment') 
+    $.ajax({
+      type: 'DELETE',
+      url: '/comments/' + comment_id,
+      dataType: 'html'
+    }).done (data) ->
+      comment.remove()

@@ -30,4 +30,9 @@ class CommentsController < ApplicationController
   def edit
     @comment = Comment.find(params[:id])
   end
+
+  def destroy
+    Comment.find(params[:id]).destroy
+    render text: 'ok'
+  end
 end
